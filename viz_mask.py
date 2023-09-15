@@ -1,19 +1,20 @@
 import os
 import argparse
 import scipy.ndimage
-import imageio
+import imageio.v2 as imageio
 
 import numpy as np 
 
 from matplotlib import colors as mcolors
 
-voc_cls = {'urban':0, 
+voc_cls = {'urban': 0, 
            'rangeland': 2,
-           'forest':3,  
-           'unknown':6,  
-           'barreb land':5,  
-           'Agriculture land':1,  
-           'water':4} 
+           'forest': 3,  
+           'unknown': 6,  
+           'barreb land': 5,  
+           'Agriculture land': 1,  
+           'water': 4,
+           } 
 cls_color = {
     0:  [0, 255, 255],
     1:  [255, 255, 0],
@@ -32,14 +33,13 @@ def mask_edge_detection(mask, edge_width):
     for i in range(h):
         for j in range(1,w):
             j_prev = j - 1 
-            # horizantal #
+            # horizontal #
             if not mask[i][j] == mask[i][j_prev]: # horizontal
                 if mask[i][j]==1: # 0 -> 1
                     edge_mask[i][j] = 1
                     for add in range(1,edge_width):
                         if j + add < w and mask[i][j+add] == 1:
                             edge_mask[i][j+add] = 1
-
                         
                 else : # 1 -> 0
                     edge_mask[i][j_prev] = 1
@@ -88,17 +88,17 @@ def arg_parse():
     parser = argparse.ArgumentParser(description='Tools to visualize semantic segmentation map.')
 
     # Datasets parameters
-    parser.add_argument('--img_path', type=str, default='', 
-                    help="path to RGB image")
-    parser.add_argument('--seg_path', type=str, default='', 
-                    help="path to seg")
+    parser.add_argument('--sat_path', type=str, default='', 
+                    help="path to RGB satellite image")
+    parser.add_argument('--mask_path', type=str, default='', 
+                    help="path to mask")
 
     args = parser.parse_args()
 
     return args
 
-def read_masks(seg, shape):
-    masks = np.zeros((shape[0], shape[1]))
+def read_masks(seg):
+    masks = np.zeros_like(seg)
     mask = (seg >= 128).astype(int)
     mask = 4 * mask[:, :, 0] + 2 * mask[:, :, 1] + mask[:, :, 2]
     masks[mask == 3] = 0  # (Cyan: 011) Urban land 
@@ -122,15 +122,13 @@ if __name__ == '__main__':
     img = imageio.imread(img_path)
     seg = imageio.imread(seg_path)
     
-    masks=read_masks(seg, img.shape)
-
-
+    masks = read_masks(seg)
     
     cs = np.unique(masks)
 
     for c in cs:
         mask = np.zeros((img.shape[0], img.shape[1]))
-        ind = np.where(masks==c)
+        ind = np.where(masks == c)
         mask[ind[0], ind[1]] = 1
         img = viz_data(img, mask, color=cmap[c])
         imageio.imsave('./exp.png', np.uint8(img))

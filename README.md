@@ -4,12 +4,12 @@ Please click [this link](https://docs.google.com/presentation/d/1lXkZrUrV209kMSG
 # Usage
 To start working on this assignment, you should clone this repository into your local machine by using the following command.
 
-    git clone https://github.com/DLCV-Fall-2022/hw1-<username>.git
+    git clone https://github.com/DLCV-Fall-2023/hw1-<username>.git
 Note that you should replace `<username>` with your own GitHub username.
 
 # Submission Rules
 ### Deadline
-2022/10/10 (Mon.) 23:59
+2023/10/10 (Mon.) 23:59
 
 ### Packages
 This homework should be done using python3.8. For a list of packages you are allowed to import in this assignment, please refer to the requirments.txt for more details.
@@ -24,4 +24,4 @@ Note that using packages with different versions will very likely lead to compat
 If you have any problems related to HW1, you may
 - Use TA hours
 - Contact TAs by e-mail ([ntudlcv@gmail.com](mailto:ntudlcv@gmail.com))
-- Post your question under hw1 FAQ section in FB group.(But TAs won't answer your question on FB.)
+- Post your question to NTU COOL under HW1 Discussions
