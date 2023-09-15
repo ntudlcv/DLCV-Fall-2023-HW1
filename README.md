@@ -1,5 +1,5 @@
 
-Please click [this link](https://docs.google.com/presentation/d/1lXkZrUrV209kMSGn6Lg37rno0Kp_zbdyxOl0K8F9U_E/edit?usp=sharing) to view the slides of HW1
+Please click [this link](https://docs.google.com/presentation/d/17BmuGNCfDK6iUsAslqrbntDjhIggxHhJMsYcpAe1PUs/edit?usp=sharing) to view the slides of HW1
 
 # Usage
 To start working on this assignment, you should clone this repository into your local machine by using the following command.
@@ -19,6 +19,9 @@ You can run the following command to install all the packages listed in the requ
     pip3 install -r requirements.txt
 
 Note that using packages with different versions will very likely lead to compatibility issues, so make sure that you install the correct version if one is specified above. E-mail or ask the TAs first if you want to import other packages.
+
+If your model checkpoints are larger than GitHub’s maximum capacity (50 MB), you could download and preprocess (e.g. unzip, tar zxf, etc.) them in `hw1_download_ckpt.sh`.
+* TAs will run `bash hw1_download_ckpt.sh` prior to any inference if the download script exists
 
 # Q&A
 If you have any problems related to HW1, you may
